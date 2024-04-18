@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YRHacks</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <script src="search.js" defer></script>
+</head>
+<body>
+    <main class="main">
+        <!-- header -->
+        <header class="headerHome">
+            <div class="container">
+                <!-- logo -->
+                <div class="logoWrapper">
+                    <div>
+                        <img src="./assets/pokeball.svg" alt="pokeball">
+                    </div>
+                    <div>
+                        <h1>Pokedex</h1>
+                    </div>
+                </div>
+
+                <!-- searchbar -->
+                <div class="searchWrapper">
+                    <!-- bar -->
+                    <div class="searchWrap">
+                        <img src="./assets/search.svg" alt="search icon" class="searchIcon">
+                        <input type="text" class="searchInput body3-font" placeholder="Search Pokemon" id="searchInput">
+                        <img src="./assets/cross.svg" alt="cross icon" class="searchCloseIcon" id="searchCloseIcon">
+                    </div>
+
+                    <!-- filter icon -->
+                    <div class="sortWrapper">
+                        <div class="sortWrap">
+                            <img src="./assets/sorting.svg" alt="sort icon" class="sortIcon" id="sortIcon">
+                        </div>
+
+                        <!-- filter pkmn -->
+                        <div class="filterWrapper">
+                            <p class="body2-font sortBy">Sort by:</p>
+                            <div class="filterWrap">
+                                <div>
+                                    <input type="radio" id="name" name="filters" value="name" checked>
+                                    <label for="name" class="body3-font">Name</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="number" name="filters" value="number">
+                                    <label for="number" class="body3-font">Number</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- list of pkmn -->
+        <section class="pokemonList">
+            <div class="container">
+                <div class="listWrapper"></div>
+            </div>
+
+            <!-- displayed when no pkmn matches filter chosen -->
+            <div id="notFoundMessage">Pokemon Not Found</div>
+        </section>
+    </main>
+</body>
+</html>

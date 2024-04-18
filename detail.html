@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Detail</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="detail.js" defer></script>
+</head>
+<body>
+    <main class="detailMain main">
+        <!-- backing img -->
+        <img src="./assets/pokedex.svg" alt="pokedex" class="detailBG">
+
+        <!-- header -->
+        <header class="header">
+            <div class="headerWrapper">
+                <div class="headerWrap">
+                    <a href="./index.html" class="backBtnWrap">
+                        <img src="./assets/back-to-home.svg" alt="back to home" class="backBtn" id="backBtn">
+                    </a>
+                    <div class="nameWrap">
+                        <h1 class="name"></h1>
+                    </div>
+                </div>
+                <div class="pokemonIDWrap">
+                    <p class="body2-font"></p>
+                </div>
+            </div>
+        </header>
+
+        <!-- display pkmn -->
+        <div class="featuredImg">
+            <a href="#" class="arrow leftArrow" id="leftArrow">
+                <img src="./assets/chevron_left.svg" alt="back">
+            </a>
+            <div class="detailIMGWrapper">
+                <img src="" alt="">
+            </div>
+            <a href="#" class="arrow rightArrow" id="rightArrow">
+                <img src="./assets/chevron_right.svg" alt="forward">
+            </a>
+        </div>
+
+        <!-- pkmn info -->
+        <div class="detailCardWrapper">
+            <div class="powerWrap">
+            </div>
+            <p class="body2-font aboutText">About</p>
+            <div class="pkmnDetailWrapper">
+                <div class="pkmnDetailWrap">
+                    <div class="pkmnDetail">
+                        <img src="./assets/weight.svg" alt="weight icon">
+                        <p class="body3-font weight"></p>
+                    </div>
+                    <p class="captionFont">Weight</p>
+                </div>
+                <div class="pkmnDetailWrap">
+                    <div class="pkmnDetail">
+                        <img src="./assets/height.svg" alt="height icon" class="straighten">
+                        <p class="body3-font height"></p>
+                    </div>
+                    <p class="captionFont">Height</p>
+                </div>
+                <div class="pkmnDetailWrap">
+                    <div class="pkmnDetail move"></div>
+                    <p class="captionFont">Abilities</p>
+                </div>
+            </div>
+
+            <!-- description -->
+            <p class="body3-font pkmnDescription"></p>
+
+            <!-- base stats -->
+            <p class="body2-font aboutText">Base Stats</p>
+            <div class="statsWrapper"> </div>
+        </div>
+        <div class="evolution">
+            
+        </div>
+    </main>
+</body>
+</html>
