@@ -1,9 +1,26 @@
-// const { loadEnvFile } = require("process");
-
-// const { max } = require("lodash");
-// const { type } = require("os");
+// consts and import vars
 let currentPkmnID = null;
 const MAX_PKMN = 1400;
+const typeColours = {
+    normal : "#B0ABAE",
+    dragon : "#246A73",
+    fire : "#ed5c5c",
+    fairy : "#FFCAD4",
+    water : "#05B2DC",
+    grass : "#43AA8B",
+    electric : "#F8E16C",
+    steel : "#759595",
+    flying : "#B0D0D3",
+    rock : "#C1AE9F",
+    ground : "#DB995A",
+    poison : "#724E91",
+    bug : "#59CD90",
+    ice : "#ABEBD2",
+    psychic : "#CB429F",
+    dark : "#22162B",
+    ghost : "#451F55",
+    fighting : "#A8A878"
+}
 
 // when document is loaded, make sure pkmn is valid
 document.addEventListener("DOMContentLoaded", () => {
@@ -36,6 +53,8 @@ async function loadPokemon(id) {
             abilitiesWrapper.innerHTML = "";
             document.querySelector(".evolution").textContent = ""
         }
+
+        // display
         if (currentPkmnID === id) {
             displayPkmnDetails(pokemon, pokemonSpecies, evolutionChain);
             const flavourText = getEnglishFlavour(pokemonSpecies);
@@ -56,10 +75,8 @@ async function loadPokemon(id) {
                     navigatePkmn(id + 1);
                 });
             }
-
             window.history.pushState({}, "", `./detail.html?id=${id}`);
         }
-
         return true;
     } catch (error) {
         console.error("Error occured while fetching pokemon data:", error);
@@ -67,38 +84,20 @@ async function loadPokemon(id) {
     }
 }
 
+// move to next pkmn
 async function navigatePkmn(id) {
     currentPkmnID = id;
     await loadPokemon(id);
 }
 
-const typeColours = {
-    normal : "#B0ABAE",
-    dragon : "#246A73",
-    fire : "#ed5c5c",
-    fairy : "#FFCAD4",
-    water : "#05B2DC",
-    grass : "#43AA8B",
-    electric : "#F8E16C",
-    steel : "#759595",
-    flying : "#B0D0D3",
-    rock : "#C1AE9F",
-    ground : "#DB995A",
-    poison : "#724E91",
-    bug : "#59CD90",
-    ice : "#ABEBD2",
-    psychic : "#CB429F",
-    dark : "#22162B",
-    ghost : "#451F55",
-    fighting : "#A8A878"
-}
-
+// shortcut to set css properties
 function setElementStyles(elements, cssProperty, value) {
     elements.forEach((element) => {
         element.style[cssProperty] = value;
     });
 }
 
+// change colours to pkmn specific ones
 function setTypeColour(pokemon) {
     const mainType = pokemon.types[0].type.name;
     const colour = typeColours[mainType];
@@ -133,18 +132,22 @@ function setTypeColour(pokemon) {
     document.head.appendChild(styleTag);
 }
 
+// shortcut to capitalize
 function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
 
+// display function
 function displayPkmnDetails(pokemon, pokemonSpecies, evolutionChain) {
     const {name, id, types, weight, height, abilities, stats} = pokemon;
     const nameCap = capitalize(name);
     const detailMainElement = document.querySelector(".detailMain");
+
     detailMainElement.classList.add(name.toLowerCase());
     document.querySelector(".nameWrap .name").textContent = nameCap;
     document.querySelector(".pokemonIDWrap .body2-font").textContent = `${String(id).padStart(3, "0")}`;
 
+    // output pkmn image and basic info
     const imageElement = document.querySelector(".detailIMGWrapper img");
     imageElement.src = `https://img.pokemondb.net/sprites/home/normal/${name}.png`;
     const typeWrapper = document.querySelector(".powerWrap");
@@ -156,6 +159,7 @@ function displayPkmnDetails(pokemon, pokemonSpecies, evolutionChain) {
         });
     });
 
+    // about section
     document.querySelector(".pkmnDetailWrap .pkmnDetail p.body3-font.weight").textContent = `${weight / 10 } kg`;
     document.querySelector(".pkmnDetailWrap .pkmnDetail p.body3-font.height").textContent = `${height / 10 } kg`;
     const abilitiesWrapper = document.querySelector(".pkmnDetailWrap .pkmnDetail.move");
@@ -166,6 +170,7 @@ function displayPkmnDetails(pokemon, pokemonSpecies, evolutionChain) {
         });
     });
 
+    // base stats
     const statsWrapper = document.querySelector(".statsWrapper");
     statsWrapper.innerHTML = "";
     const statNameMap = {
@@ -199,7 +204,8 @@ function displayPkmnDetails(pokemon, pokemonSpecies, evolutionChain) {
     });
 
     setTypeColour(pokemon);
-    console.log(evolutionChain);
+
+    // evolution
     firstEvoID = parseInt(getID(evolutionChain.species.url));
     if (evolutionChain.evolves_to.length === 1) {
         if (evolutionChain.evolves_to[0].evolves_to.length === 1) {
@@ -214,6 +220,7 @@ function displayPkmnDetails(pokemon, pokemonSpecies, evolutionChain) {
     }
 }
 
+// find the id/pokedex number of pokemon using its url
 function getID(url) {
     let id = url.slice(42);
     let backslashIndex = 0;
@@ -227,6 +234,7 @@ function getID(url) {
     return id;
 }
 
+// flavour text from api
 function getEnglishFlavour(pokemonSpecies) {
     for (let entry of pokemonSpecies.flavor_text_entries) {
         if (entry.language.name === "en") {
@@ -237,6 +245,7 @@ function getEnglishFlavour(pokemonSpecies) {
     return "";
 }
 
+// add element to a parent element
 function createAppendElement(parent, tag, options = {}) {
     const element = document.createElement(tag);
     Object.keys(options).forEach((key) => {
