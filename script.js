@@ -48,7 +48,7 @@ function displayPkmn(pokemon) {
                 <p class="captionFont">#${pokemonID}</p>
             </div>
             <div class="imgWrap">
-                <img src="https://img.pokemondb.net/artwork/avif/${pokemon.name}.avif" alt="${pokemon.name}" />
+                <img src="https://img.pokemondb.net/sprites/home/normal/${pokemon.name}.png" alt="${pokemon.name}" />
             </div>
             <div class="nameWrap">
                 <p class="body3-font">${pokemon.name}</p>
