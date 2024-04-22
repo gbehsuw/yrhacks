@@ -161,7 +161,7 @@ function displayPkmnDetails(pokemon, pokemonSpecies, evolutionChain) {
 
     // about section
     document.querySelector(".pkmnDetailWrap .pkmnDetail p.body3-font.weight").textContent = `${weight / 10 } kg`;
-    document.querySelector(".pkmnDetailWrap .pkmnDetail p.body3-font.height").textContent = `${height / 10 } kg`;
+    document.querySelector(".pkmnDetailWrap .pkmnDetail p.body3-font.height").textContent = `${height / 10 } m`;
     const abilitiesWrapper = document.querySelector(".pkmnDetailWrap .pkmnDetail.move");
     abilities.forEach(({ability}) => {
         createAppendElement(abilitiesWrapper, "p", {
